@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@500&display=swap');
+
+body {
+  margin: 0;
+  background-color: #07122a;
+  color: #ffffff;
+  font-family: 'Sofia Sans Semi Condensed', sans-serif;
+  overflow-x: hidden
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c7c7c7;
+  border-radius: 1rem;
+}
