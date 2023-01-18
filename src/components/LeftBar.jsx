@@ -25,18 +25,18 @@ const LeftBar = () => {
     {
       icon: <MdHomeFilled className="text-xl" />,
       name: "Home",
+      type:"/"
     },
     {
       icon: <FaRegCompass className="text-xl" />,
       name: "Explore",
+      type:"trending"
     },
-    {
-      icon: <MdOutlineSlowMotionVideo className="text-xl" />,
-      name: "Shorts",
-    },
+
     {
       icon: <MdSubscriptions className="text-xl" />,
       name: "Subscriptions",
+      type:"subscribed"
     },
    
   ];
@@ -62,10 +62,6 @@ const LeftBar = () => {
       icon: <MdThumbUpOffAlt className="text-xl" />,
       name: "Liked Videos",
     },
-    {
-        icon: <BiUserCircle className="text-xl" />,
-        name: "Sign In",
-      },
   ];
 
   const subscriptionLinks = [
@@ -128,15 +124,13 @@ const LeftBar = () => {
   return (
     <div className="hidden  lg:block  left-0 w-2/12 bg-[#071125] pr-5 overflow-auto pb-8 z-60 max-h-screen">
       <ul className="flex flex-col border-b-2 border-gray-700">
-        {mainLinks.map(({ icon, name }) => {
+        {mainLinks.map(({ icon, name,type }) => {
           return (
             <li
               key={name}
-              className={`pl-6 py-3 hover:bg-[#0C2D48] ${
-                name === "Home" ? "bg-slate-600" : ""
-              }`}
+              className={`pl-6 py-3 hover:bg-[#1d3748] `}
             >
-              <Link to={name==="Home" ? "/" : ""} className="flex items-center gap-5">
+              <Link to={`/${type}`} className="flex items-center gap-5">
                 {icon}
                 <span className="text-sm tracking-wider">{name}</span>
               </Link>
@@ -147,7 +141,7 @@ const LeftBar = () => {
       <ul className="flex flex-col border-b-2 border-gray-700">
         {secondaryLinks.map(({ icon, name }) => {
           return (
-            <li key={name} className={`pl-6 py-3 hover:bg-[#0C2D48]  ${name === "Sign In" ? "border-2 border-blue-400 text-blue-400 font-bold" : ""}`}>
+            <li key={name} className={`pl-6 py-3 hover:bg-[#0C2D48]  `}>
               <a href="#" className="flex items-center gap-5">
                 {icon}
                 <span className="text-sm tracking-wider">{name}</span>

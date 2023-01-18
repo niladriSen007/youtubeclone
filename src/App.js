@@ -14,6 +14,8 @@ import {
 import LeftBar from './components/LeftBar'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
+import Login from './pages/Login'
+import { Children } from 'react'
 
 
 const App = () => {
@@ -42,8 +44,17 @@ const App = () => {
       children:[
         {
           path:"/",
-          element:<Home />
+          element:<Home  type="random"/>, 
         },
+        {
+          path:"/trending",
+          element:<Home type="trending" />, 
+        },
+        {
+          path:"/subscribed",
+          element:<Home type="subscribed" />, 
+        },
+
         {
           path:"/watch/:id",
           element:<Watch />
@@ -51,6 +62,10 @@ const App = () => {
         {
           path: "/search",
           element: <Search />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
         },
       ]
     },

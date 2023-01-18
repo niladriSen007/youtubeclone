@@ -1,5 +1,7 @@
-import { isValidDateValue } from "@testing-library/user-event/dist/utils";
-import React from "react";
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Comment from "./Comment";
 
 const commentsArray = [
@@ -46,13 +48,34 @@ const commentsArray = [
   },
 ];
 
-const Comments = () => {
+const Comments = ({vidId}) => {
+
+  const { currentUser } = useSelector((state) => state.user);
+
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const res = await axios.get(`/comments/${vidId}`);
+        setComments(res.data);
+      } catch (err) {}
+    };
+    fetchComments();
+  }, [vidId]);
+
   return (
     <div>
-      
+      <h2 className="text-white font-bold py-2 text-xl">Comments</h2>
+      <div className="flex justify-between items-center gap-4 pb-3">
+      <img className='w-10 h-10 rounded-full' src={currentUser.img} alt="prof" />
+      <input type="text" className=" focus:outline-none bg-transparent border-2 border-b-slate-800 flex-1 border-t-[#07122a] border-l-[#07122a] border-r-[#07122a] "/>
+      <button className="py-1  px-2 lg:px-4 rounded-lg  bg-blue-700">Comment</button>
+      </div>
      {
-        commentsArray.map(vid=>(
-            <Comment key={vid.id} img={vid.img} comment={vid.comment} name={vid.name}/>
+        comments.map(vid=>(
+            // <Comment key={vid.id} img={vid.img} comment={vid.comment} name={vid.name}/>
+            <Comment key={vid._id} userId = {vid.userId} comment={vid.desc} />
         ))
      }
     </div>
